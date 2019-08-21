@@ -14,6 +14,15 @@ extern "C" {
 
 #include "Macros.h"
 #include "projMacros.h"
+    
+void enableInterrupts(void);
+
+void disableInterrupts(void);
+
+void initInterrupts(void);
+
+void __attribute__((__interrupt__,no_auto_psv)) _CNInterrupt(void);
+    
 
 
 #ifdef	__cplusplus

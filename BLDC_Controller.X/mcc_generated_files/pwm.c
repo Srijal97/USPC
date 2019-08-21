@@ -59,7 +59,7 @@ void PWM_Initialize (void)
     // PCLKDIV 1; 
     PTCON2 = 0x06;
     // PTPER 0; 
-    PTPER = 19792;
+    PTPER = 148;
     // SEVTCMP 0; 
     SEVTCMP = 0x00;
     // MDC 0; 
@@ -90,29 +90,29 @@ void PWM_Initialize (void)
     __builtin_write_PWMSFR(&FCLCON3, 0x03, &PWMKEY);
     
     // PDC1 1234; 
-    PDC1 = 6597;
+    PDC1 = 70;
     // PDC2 1800; 
-    PDC2 = 6597;
+    PDC2 = 70;
     // PDC3 0; 
-    PDC3 = 6597;
+    PDC3 = 70;
     // PHASE1 2400; 
     PHASE1 = 0;
     // PHASE2 2400; 
-    PHASE2 = 6597;
+    PHASE2 = 0;
     // PHASE3 0; 
-    PHASE3 = -6597;
+    PHASE3 = 0;
     // DTR1 80; 
-    DTR1 = 50;  // DTR Value = 50 then dead time = 710 ns
+    DTR1 = 5;  // DTR Value = 5 then dead time = 2us
     // DTR2 80; 
-    DTR2 = 50;
+    DTR2 = 5;
     // DTR3 0; 
-    DTR3 = 50;
+    DTR3 = 5;
     // ALTDTR1 80; 
-    ALTDTR1 = 50;
+    ALTDTR1 = 5;
     // ALTDTR2 80; 
-    ALTDTR2 = 50;
+    ALTDTR2 = 5;
     // ALTDTR3 0; 
-    ALTDTR3 = 50;
+    ALTDTR3 = 5;
     // TRGCMP 0; 
     TRIG1 = 0x00;
     // TRGCMP 0; 
@@ -138,11 +138,11 @@ void PWM_Initialize (void)
     // LEB 0; 
     LEBDLY3 = 0x00;
 
-    AUXCON1 = 0x0003;
+    AUXCON1 = 0x0000;
 
-    AUXCON2 = 0x0003;
+    AUXCON2 = 0x0000;
 
-    AUXCON3 = 0x0003;
+    AUXCON3 = 0x0000;
     
 
     // SYNCOEN disabled; SEIEN disabled; SESTAT disabled; SEVTPS 1; SYNCSRC SYNCI1; SYNCEN disabled; PTSIDL disabled; PTEN enabled; EIPU disabled; SYNCPOL disabled; 

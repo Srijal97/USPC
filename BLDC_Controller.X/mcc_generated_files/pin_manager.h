@@ -492,6 +492,7 @@
 
 */
 #define IO_RA10_CAN_SI_SetDigitalOutput() _TRISA10 = 0
+
 /**
   @Summary
     Sets the GPIO pin, RA11, high using LATA11.
@@ -513,9 +514,9 @@
     // Set RA11 high (1)
     IO_RA11_SW2_SetHigh();
     </code>
-
+=
 */
-#define IO_RA11_SW2_SetHigh()          _LATA11 = 1
+#define IO_RA11_W_ZCD_SetHigh()          _LATA11 = 1
 /**
   @Summary
     Sets the GPIO pin, RA11, low using LATA11.
@@ -539,7 +540,7 @@
     </code>
 
 */
-#define IO_RA11_SW2_SetLow()           _LATA11 = 0
+#define IO_RA11_W_ZCD_SetLow()           _LATA11 = 0
 /**
   @Summary
     Toggles the GPIO pin, RA11, using LATA11.
@@ -563,7 +564,7 @@
     </code>
 
 */
-#define IO_RA11_SW2_Toggle()           _LATA11 ^= 1
+#define IO_RA11_W_ZCD_Toggle()           _LATA11 ^= 1
 /**
   @Summary
     Reads the value of the GPIO pin, RA11.
@@ -589,7 +590,7 @@
     </code>
 
 */
-#define IO_RA11_SW2_GetValue()         _RA11
+#define IO_RA11_W_ZCD_GetValue()         _RA11
 /**
   @Summary
     Configures the GPIO pin, RA11, as an input.
@@ -613,7 +614,7 @@
     </code>
 
 */
-#define IO_RA11_SW2_SetDigitalInput()  _TRISA11 = 1
+#define IO_RA11_W_ZCD_SetDigitalInput()  _TRISA11 = 1
 /**
   @Summary
     Configures the GPIO pin, RA11, as an output.
@@ -637,7 +638,7 @@
     </code>
 
 */
-#define IO_RA11_SW2_SetDigitalOutput() _TRISA11 = 0
+#define IO_RA11_W_ZCD_SetDigitalOutput() _TRISA11 = 0
 /**
   @Summary
     Sets the GPIO pin, RA12, high using LATA12.
@@ -661,6 +662,7 @@
     </code>
 
 */
+
 #define IO_RA12_SW3_SetHigh()          _LATA12 = 1
 /**
   @Summary
@@ -1391,7 +1393,7 @@
     </code>
 
 */
-#define channel_AN5_SetHigh()          _LATB3 = 1
+#define IO_RB3_U_ZCD_SetHigh()          _LATB3 = 1
 /**
   @Summary
     Sets the GPIO pin, RB3, low using LATB3.
@@ -1415,7 +1417,7 @@
     </code>
 
 */
-#define channel_AN5_SetLow()           _LATB3 = 0
+#define IO_RB3_U_ZCD_SetLow()           _LATB3 = 0
 /**
   @Summary
     Toggles the GPIO pin, RB3, using LATB3.
@@ -1439,7 +1441,7 @@
     </code>
 
 */
-#define channel_AN5_Toggle()           _LATB3 ^= 1
+#define IO_RB3_U_ZCD_Toggle()           _LATB3 ^= 1
 /**
   @Summary
     Reads the value of the GPIO pin, RB3.
@@ -1465,7 +1467,7 @@
     </code>
 
 */
-#define channel_AN5_GetValue()         _RB3
+#define IO_RB3_U_ZCD_GetValue()         _RB3
 /**
   @Summary
     Configures the GPIO pin, RB3, as an input.
@@ -1489,7 +1491,7 @@
     </code>
 
 */
-#define channel_AN5_SetDigitalInput()  _TRISB3 = 1
+#define IO_RB3_U_ZCD_SetDigitalInput()  _TRISB3 = 1
 /**
   @Summary
     Configures the GPIO pin, RB3, as an output.
@@ -1513,7 +1515,7 @@
     </code>
 
 */
-#define channel_AN5_SetDigitalOutput() _TRISB3 = 0
+#define IO_RB3_U_ZCD_SetDigitalOutput() _TRISB3 = 0
 /**
   @Summary
     Sets the GPIO pin, RC0, high using LATC0.
@@ -1683,7 +1685,7 @@
     </code>
 
 */
-#define channel_AN7_SetHigh()          _LATC1 = 1
+#define IO_RC1_V_ZCD_SetHigh()          _LATC1 = 1
 /**
   @Summary
     Sets the GPIO pin, RC1, low using LATC1.
@@ -1707,7 +1709,7 @@
     </code>
 
 */
-#define channel_AN7_SetLow()           _LATC1 = 0
+#define IO_RC1_V_ZCD_SetLow()           _LATC1 = 0
 /**
   @Summary
     Toggles the GPIO pin, RC1, using LATC1.
@@ -1731,7 +1733,7 @@
     </code>
 
 */
-#define channel_AN7_Toggle()           _LATC1 ^= 1
+#define IO_RC1_V_ZCD_Toggle()           _LATC1 ^= 1
 /**
   @Summary
     Reads the value of the GPIO pin, RC1.
@@ -1757,7 +1759,7 @@
     </code>
 
 */
-#define channel_AN7_GetValue()         _RC1
+#define IO_RC1_V_ZCD_GetValue()         _RC1
 /**
   @Summary
     Configures the GPIO pin, RC1, as an input.
@@ -1781,7 +1783,7 @@
     </code>
 
 */
-#define channel_AN7_SetDigitalInput()  _TRISC1 = 1
+#define IO_RC1_V_ZCD_SetDigitalInput()  _TRISC1 = 1
 /**
   @Summary
     Configures the GPIO pin, RC1, as an output.
@@ -1805,7 +1807,7 @@
     </code>
 
 */
-#define channel_AN7_SetDigitalOutput() _TRISC1 = 0
+#define IO_RC1_V_ZCD_SetDigitalOutput() _TRISC1 = 0
 /**
   @Summary
     Sets the GPIO pin, RC2, high using LATC2.
@@ -1975,7 +1977,7 @@
     </code>
 
 */
-#define IO_RC9_ETH_RST_SetHigh()          _LATC9 = 1
+#define IO_RC9_IM_LED_SetHigh()          _LATC9 = 1
 /**
   @Summary
     Sets the GPIO pin, RC9, low using LATC9.
@@ -1999,7 +2001,7 @@
     </code>
 
 */
-#define IO_RC9_ETH_RST_SetLow()           _LATC9 = 0
+#define IO_RC9_IM_LED_SetLow()           _LATC9 = 0
 /**
   @Summary
     Toggles the GPIO pin, RC9, using LATC9.
@@ -2023,7 +2025,7 @@
     </code>
 
 */
-#define IO_RC9_ETH_RST_Toggle()           _LATC9 ^= 1
+#define IO_RC9_IM_LED_Toggle()           _LATC9 ^= 1
 /**
   @Summary
     Reads the value of the GPIO pin, RC9.
@@ -2049,7 +2051,7 @@
     </code>
 
 */
-#define IO_RC9_ETH_RST_GetValue()         _RC9
+#define IO_RC9_IM_LED_GetValue()         _RC9
 /**
   @Summary
     Configures the GPIO pin, RC9, as an input.
@@ -2073,7 +2075,7 @@
     </code>
 
 */
-#define IO_RC9_ETH_RST_SetDigitalInput()  _TRISC9 = 1
+#define IO_RC9_IM_LED_SetDigitalInput()  _TRISC9 = 1
 /**
   @Summary
     Configures the GPIO pin, RC9, as an output.
@@ -2097,7 +2099,7 @@
     </code>
 
 */
-#define IO_RC9_ETH_RST_SetDigitalOutput() _TRISC9 = 0
+#define IO_RC9_IM_LED_SetDigitalOutput() _TRISC9 = 0
 /**
   @Summary
     Sets the GPIO pin, RD5, high using LATD5.
@@ -2121,7 +2123,7 @@
     </code>
 
 */
-#define IO_RD5_HB_LED_SetHigh()          _LATD5 = 1
+#define IO_RD5_BLDC_LED_SetHigh()          _LATD5 = 1
 /**
   @Summary
     Sets the GPIO pin, RD5, low using LATD5.
@@ -2145,7 +2147,7 @@
     </code>
 
 */
-#define IO_RD5_HB_LED_SetLow()           _LATD5 = 0
+#define IO_RD5_BLDC_LED_SetLow()           _LATD5 = 0
 /**
   @Summary
     Toggles the GPIO pin, RD5, using LATD5.
@@ -2169,7 +2171,7 @@
     </code>
 
 */
-#define IO_RD5_HB_LED_Toggle()           _LATD5 ^= 1
+#define IO_RD5_BLDC_LED_Toggle()           _LATD5 ^= 1
 /**
   @Summary
     Reads the value of the GPIO pin, RD5.
@@ -2195,7 +2197,7 @@
     </code>
 
 */
-#define IO_RD5_HB_LED_GetValue()         _RD5
+#define IO_RD5_BLDC_LED_GetValue()         _RD5
 /**
   @Summary
     Configures the GPIO pin, RD5, as an input.
@@ -2219,7 +2221,7 @@
     </code>
 
 */
-#define IO_RD5_HB_LED_SetDigitalInput()  _TRISD5 = 1
+#define IO_RD5_BLDC_LED_SetDigitalInput()  _TRISD5 = 1
 /**
   @Summary
     Configures the GPIO pin, RD5, as an output.
@@ -2243,7 +2245,7 @@
     </code>
 
 */
-#define IO_RD5_HB_LED_SetDigitalOutput() _TRISD5 = 0
+#define IO_RD5_PMSM_LED_SetDigitalOutput() _TRISD5 = 0
 /**
   @Summary
     Sets the GPIO pin, RG6, high using LATG6.
@@ -2267,6 +2269,157 @@
     </code>
 
 */
+
+#define IO_RD6_PMSM_LED_SetHigh()          _LATD6 = 1
+/**
+  @Summary
+    Sets the GPIO pin, RD6, low using LATD5.
+
+  @Description
+    Sets the GPIO pin, RD6, low using LATD5.
+
+  @Preconditions
+    The RD6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD6 low (0)
+    IO_RD6_HB_LED_SetLow();
+    </code>
+
+*/
+#define IO_RD6_PMSM_LED_SetLow()           _LATD6 = 0
+/**
+  @Summary
+    Toggles the GPIO pin, RD6, using LATD5.
+
+  @Description
+    Toggles the GPIO pin, RD6, using LATD5.
+
+  @Preconditions
+    The RD6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RD6
+    IO_RD6_HB_LED_Toggle();
+    </code>
+
+*/
+#define IO_RD6_PMSM_LED_Toggle()           _LATD6 ^= 1
+/**
+  @Summary
+    Reads the value of the GPIO pin, RD6.
+
+  @Description
+    Reads the value of the GPIO pin, RD6.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RD6
+    postValue = IO_RD6_HB_LED_GetValue();
+    </code>
+
+*/
+#define IO_RD6_PMSM_LED_GetValue()         _RD6
+/**
+  @Summary
+    Configures the GPIO pin, RD6, as an input.
+
+  @Description
+    Configures the GPIO pin, RD6, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD6 as an input
+    IO_RD6_HB_LED_SetDigitalInput();
+    </code>
+
+*/
+#define IO_RD6_PMSM_LED_SetDigitalInput()  _TRISD6 = 1
+/**
+  @Summary
+    Configures the GPIO pin, RD6, as an output.
+
+  @Description
+    Configures the GPIO pin, RD6, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD6 as an output
+    IO_RD6_HB_LED_SetDigitalOutput();
+    </code>
+
+*/
+#define IO_RD6_PMSM_LED_SetDigitalOutput() _TRISD6 = 0
+
+
+/**
+  @Summary
+    Sets the GPIO pin, RG6, high using LATG6.
+
+  @Description
+    Sets the GPIO pin, RG6, high using LATG6.
+
+  @Preconditions
+    The RG6 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RG6 high (1)
+    IO_RG6_SW4_SetHigh();
+    </code>
+
+*/
+
+
 #define IO_RG6_SW4_SetHigh()          _LATG6 = 1
 /**
   @Summary

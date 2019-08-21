@@ -75,6 +75,9 @@ int main(void)
     
     TMR1_Start();   // Kernel Timer Start
     
+    enableInterrupts();
+    initInterrupts();
+    
     //int a = sizeof(uLONG);
 
     while (1)

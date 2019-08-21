@@ -133,52 +133,52 @@ void readAllAnalogVariables (void)
     static uLONG voltage_sample_sum = 0;
 
     // 100us Sampling
-    adcBusCurrent_raw      = sampleReadADC(ADC_CHN0_BUS_CURRENT); 
-    adcMotorVoltage_raw    = sampleReadADC(ADC_CHN5_BACK_EMF); 
-    adcInpVoltage_raw      = sampleReadADC(ADC_CHN1_INPUT_VOLT);
-    
-    adcBusCurrent   = LPF(adcBusCurrent_raw, adcBusCurrent,   lpfGain);
-    adcMotorVoltage = LPF(adcMotorVoltage_raw, adcMotorVoltage, lpfGain);
-    adcInputVoltage = LPF(adcInpVoltage_raw, adcInputVoltage, lpfGain);
-    
-    // Convert ADC current count to real Value - Formula can be applied later
-    if(sample_count < 1000) {
-        current_sample_sum += (uLONG)adcBusCurrent;
-        voltage_sample_sum += (uLONG)adcMotorVoltage;
-        sample_count++;
-    }
-    else {
-        dcBusCurrent = (uINT)(uLONG)(current_sample_sum / (uLONG)1000);
-        dcBusVoltage = (uINT)(uLONG)(voltage_sample_sum / (uLONG)1000);
-        sample_count = 0;
-        current_sample_sum = 0;
-        voltage_sample_sum = 0;
-    }
-    
-    // 20ms Sampling
-    if(++cnt20msSample > 199)
-    {
-        cnt20msSample = 0;
-
-        
-        adcPLCinputVoltage_raw = sampleReadADC(ADC_CHN3_PLC_INPUT); 
-        adcTachoInput_raw      = sampleReadADC(ADC_CHN7_TACHO_INPUT); 
-        adcPotInput_raw        = sampleReadADC(ADC_CHN8_POT_INPUT);
-
-        
-        adcPLCinputVoltage  = LPF(adcPLCinputVoltage_raw, adcPLCinputVoltage, lpfGain);    
-        adcTachoInput       = LPF(adcTachoInput_raw, adcTachoInput, lpfGain);
-        adcPotInput         = LPF(adcPotInput_raw, adcPotInput, lpfGain);
-    }
-    
-    // 50ms Sampling
-    if(++cnt50msSample > 499)
-    {
-        cnt50msSample = 0;
-        
-        adcInternalTemp_raw = sampleReadADC(ADC_CHN6_INTERANL_TEMP); 
-        adcInternalTemp = LPF(adcInternalTemp_raw, adcInternalTemp, lpfGain);
-    }
+//    adcBusCurrent_raw      = sampleReadADC(ADC_CHN0_BUS_CURRENT); 
+//    adcMotorVoltage_raw    = sampleReadADC(ADC_CHN5_BACK_EMF); 
+//    adcInpVoltage_raw      = sampleReadADC(ADC_CHN1_INPUT_VOLT);
+//    
+//    adcBusCurrent   = LPF(adcBusCurrent_raw, adcBusCurrent,   lpfGain);
+//    adcMotorVoltage = LPF(adcMotorVoltage_raw, adcMotorVoltage, lpfGain);
+//    adcInputVoltage = LPF(adcInpVoltage_raw, adcInputVoltage, lpfGain);
+//    
+//    // Convert ADC current count to real Value - Formula can be applied later
+//    if(sample_count < 1000) {
+//        current_sample_sum += (uLONG)adcBusCurrent;
+//        voltage_sample_sum += (uLONG)adcMotorVoltage;
+//        sample_count++;
+//    }
+//    else {
+//        dcBusCurrent = (uINT)(uLONG)(current_sample_sum / (uLONG)1000);
+//        dcBusVoltage = (uINT)(uLONG)(voltage_sample_sum / (uLONG)1000);
+//        sample_count = 0;
+//        current_sample_sum = 0;
+//        voltage_sample_sum = 0;
+//    }
+//    
+//    // 20ms Sampling
+//    if(++cnt20msSample > 199)
+//    {
+//        cnt20msSample = 0;
+//
+//        
+//        adcPLCinputVoltage_raw = sampleReadADC(ADC_CHN3_PLC_INPUT); 
+//        adcTachoInput_raw      = sampleReadADC(ADC_CHN7_TACHO_INPUT); 
+//        adcPotInput_raw        = sampleReadADC(ADC_CHN8_POT_INPUT);
+//
+//        
+//        adcPLCinputVoltage  = LPF(adcPLCinputVoltage_raw, adcPLCinputVoltage, lpfGain);    
+//        adcTachoInput       = LPF(adcTachoInput_raw, adcTachoInput, lpfGain);
+//        adcPotInput         = LPF(adcPotInput_raw, adcPotInput, lpfGain);
+//    }
+//    
+//    // 50ms Sampling
+//    if(++cnt50msSample > 499)
+//    {
+//        cnt50msSample = 0;
+//        
+//        adcInternalTemp_raw = sampleReadADC(ADC_CHN6_INTERANL_TEMP); 
+//        adcInternalTemp = LPF(adcInternalTemp_raw, adcInternalTemp, lpfGain);
+//    }
 }
 //******************************************************************************
 

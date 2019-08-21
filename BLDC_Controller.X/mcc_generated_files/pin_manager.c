@@ -79,7 +79,7 @@ void PIN_MANAGER_Initialize (void)
     TRISA = 0x1B83;
     TRISB = 0x07FE;
     TRISC = 0xBD7F;
-    TRISD = 0x0140;
+    TRISD = 0x0100;
     TRISE = 0xF000;
     TRISF = 0x0003;
     TRISG = 0x03C0;
@@ -94,9 +94,10 @@ void PIN_MANAGER_Initialize (void)
     CNPDE = 0x0000;
     CNPDF = 0x0000;
     CNPDG = 0x0000;
-    CNPUA = 0x0000;
-    CNPUB = 0x0000;
-    CNPUC = 0x0000;
+    
+    CNPUA = 0x0800;
+    CNPUB = 0x0008;
+    CNPUC = 0x0002;
     CNPUD = 0x0000;
     CNPUE = 0x0000;
     CNPUF = 0x0000;
@@ -117,9 +118,16 @@ void PIN_MANAGER_Initialize (void)
      * Setting the Analog/Digital Configuration SFR(s)
      ***************************************************************************/
     ANSELA = 0x0013;
-    ANSELB = 0x010E;
-    ANSELC = 0x0007;
+    ANSELB = 0x0106;
+    ANSELC = 0x0005;
     ANSELE = 0xF000;
+    
+    
+    // Setting the Pin Change Notification Interrupts
+    
+    CNENA = 0x0800;  // enable on RA11/AN9
+    CNENB = 0x0008;  // enable on RB3/AN5
+    CNENC = 0x0002;  // enable on RC1/AN7
 
 
     /****************************************************************************
@@ -129,9 +137,6 @@ void PIN_MANAGER_Initialize (void)
 
     RPOR5bits.RP55R = 0x0001;    //RC7->UART1:U1TX
     RPINR18bits.U1RXR = 0x0038;    //RC8->UART1:U1RX
-    
-    RPINR14bits.QEA1R = 0x0077;  // RG7/RPI119 -> QEI1A
-    RPINR14bits.QEB1R = 0x0078;  // RG8/RP120 -> QEI1B
 
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
 
