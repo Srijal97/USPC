@@ -1,12 +1,151 @@
 //******************************************************************************
-// Code developed for SVIT Mumbai
+// Code developed for SPIT Mumbai
 // This file includes all functions related to Motor control
 //******************************************************************************
 #include "motorFun.h"
+#include "mcc_generated_files/pin_manager.h"
 
+double input;
+double Setpoint;
 
-  double input;
-  double Setpoint;
+void write_switching_vector(char sensor_vector, char direction) {
+//    char switching_vector;
+//    if (direction == 1) {
+//        switch (sensor_vector){
+//            case 1:
+//                switching_vector = 5;
+//                break;
+//
+//            case 2:
+//                switching_vector = 3;
+//                break;
+//
+//            case 3:
+//                switching_vector = 1;
+//                break;
+//
+//            case 4:
+//                switching_vector = 6;
+//                break;
+//
+//            case 5:
+//                switching_vector = 4;
+//                break;
+//
+//            case 6:
+//                switching_vector = 2;
+//                break;
+//
+//            default:
+//                switching_vector = sensor_vector;
+//        }
+//    } else {
+//        switch (sensor_vector){
+//            case 1:
+//                switching_vector = 3;
+//                break;
+//
+//            case 2:
+//                switching_vector = 6;
+//                break;
+//
+//            case 3:
+//                switching_vector = 2;
+//                break;
+//
+//            case 4:
+//                switching_vector = 5;
+//                break;
+//
+//            case 5:
+//                switching_vector = 1;
+//                break;
+//
+//            case 6:
+//                switching_vector = 4;
+//                break;
+//
+//            default:
+//                switching_vector = sensor_vector;
+//        }
+//    }
+    
+    switch (sensor_vector) { 
+      case 1:
+          __builtin_write_PWMSFR(&IOCON1, 0xC740, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xC500, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xC700, &PWMKEY);
+
+          IO_RD5_BLDC_LED_SetHigh();
+          IO_RD6_PMSM_LED_SetHigh();
+          IO_RC9_IM_LED_SetLow();
+          break;
+
+      case 2:
+          __builtin_write_PWMSFR(&IOCON1, 0xC500, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xC700, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xC740, &PWMKEY);
+
+          IO_RD5_BLDC_LED_SetHigh();
+          IO_RD6_PMSM_LED_SetLow();
+          IO_RC9_IM_LED_SetHigh();
+          break;
+
+      case 3:
+          __builtin_write_PWMSFR(&IOCON1, 0xC700, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xC500, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xC740, &PWMKEY);
+
+          IO_RD5_BLDC_LED_SetHigh();
+          IO_RD6_PMSM_LED_SetLow();
+          IO_RC9_IM_LED_SetLow();
+          break;
+
+      case 4:
+          __builtin_write_PWMSFR(&IOCON1, 0xC700, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xC740, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xC500, &PWMKEY);
+
+          IO_RD5_BLDC_LED_SetLow();
+          IO_RD6_PMSM_LED_SetHigh();
+          IO_RC9_IM_LED_SetHigh();
+          break;
+
+      case 5:
+          __builtin_write_PWMSFR(&IOCON1, 0xC740, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xC700, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xC500, &PWMKEY);
+
+          IO_RD5_BLDC_LED_SetLow();
+          IO_RD6_PMSM_LED_SetHigh();
+          IO_RC9_IM_LED_SetLow();
+          break;
+
+      case 6:
+          __builtin_write_PWMSFR(&IOCON1, 0xC500, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xC740, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xC700, &PWMKEY);
+
+          IO_RD5_BLDC_LED_SetLow();
+          IO_RD6_PMSM_LED_SetLow();
+          IO_RC9_IM_LED_SetHigh();
+          break;
+
+      default:
+          __builtin_write_PWMSFR(&IOCON1, 0xC400, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xC400, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xC400, &PWMKEY);
+
+          IO_RD5_BLDC_LED_SetLow();
+          IO_RD6_PMSM_LED_SetLow();
+          IO_RC9_IM_LED_SetLow();
+          break;
+
+  }
+
+}
+  
+  
 //******************************************************************************
 // runMotor 
 // Input - Direction and PWM Duty Count

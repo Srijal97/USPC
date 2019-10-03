@@ -54,6 +54,7 @@
 
 
 
+
 void PWM_Initialize (void)
 {
     // PCLKDIV 1; 
@@ -76,11 +77,11 @@ void PWM_Initialize (void)
     PWMCON3 = 0x0000;
     
     //FLTDAT PWM1L Low, PWM1H Low; SWAP disabled; OVRENH disabled; PENL enabled; PMOD Complementary Output Mode; OVRENL disabled; OSYNC disabled; POLL disabled; PENH enabled; CLDAT PWM1L Low, PWM1H Low; OVRDAT PWM1L Low, PWM1H Low; POLH disabled; 
-    __builtin_write_PWMSFR(&IOCON1, 0xC000, &PWMKEY);
+    __builtin_write_PWMSFR(&IOCON1, 0xC400, &PWMKEY);
     //FLTDAT PWM2L Low, PWM2H Low; SWAP disabled; OVRENH disabled; PENL enabled; PMOD Complementary Output Mode; OVRENL disabled; OSYNC disabled; POLL disabled; PENH enabled; CLDAT PWM2L Low, PWM2H Low; OVRDAT PWM2L Low, PWM2H Low; POLH disabled; 
-    __builtin_write_PWMSFR(&IOCON2, 0xC000, &PWMKEY);
+    __builtin_write_PWMSFR(&IOCON2, 0xC400, &PWMKEY);
     //FLTDAT PWM3L Low, PWM3H Low; SWAP disabled; OVRENH disabled; PENL disabled; PMOD Complementary Output Mode; OVRENL disabled; OSYNC disabled; POLL disabled; PENH disabled; CLDAT PWM3L Low, PWM3H Low; OVRDAT PWM3L Low, PWM3H Low; POLH disabled; 
-    __builtin_write_PWMSFR(&IOCON3, 0xC000, &PWMKEY);
+    __builtin_write_PWMSFR(&IOCON3, 0xC400, &PWMKEY);
     
     //FLTPOL disabled; CLPOL disabled; CLSRC FLT1; CLMOD disabled; FLTMOD PWM1H, PWM1L pins to FLTDAT values- Latched; FLTSRC FLT1; 
     __builtin_write_PWMSFR(&FCLCON1, 0x03, &PWMKEY);
@@ -90,17 +91,18 @@ void PWM_Initialize (void)
     __builtin_write_PWMSFR(&FCLCON3, 0x03, &PWMKEY);
     
     // PDC1 1234; 
-    PDC1 = 70;
+    PDC1 = 74;
     // PDC2 1800; 
-    PDC2 = 70;
+    PDC2 = 74;
     // PDC3 0; 
-    PDC3 = 70;
+    PDC3 = 74;
     // PHASE1 2400; 
     PHASE1 = 0;
     // PHASE2 2400; 
     PHASE2 = 0;
     // PHASE3 0; 
     PHASE3 = 0;
+    
     // DTR1 80; 
     DTR1 = 5;  // DTR Value = 5 then dead time = 2us
     // DTR2 80; 

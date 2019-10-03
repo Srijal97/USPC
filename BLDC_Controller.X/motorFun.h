@@ -39,6 +39,7 @@ inline  void PWM_Override_Disable(PWM_GENERATOR genNum);
 uINT PIcontroller_Speed (double Setpoint, double PV, double Kp, double Ki, double Kd);
 uINT PIcontroller_Torque(uINT Setpoint, uINT PV, uINT Kpd, uINT Kid);
 
+void write_swtiching_vector(char sensor_vector, char direction);
 
 
 #ifdef	__cplusplus

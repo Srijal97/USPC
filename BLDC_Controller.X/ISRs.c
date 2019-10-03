@@ -6,6 +6,8 @@
 
 #include "ISRs.h"
 #include "mcc_generated_files/pin_manager.h"
+#include "motorFun.h"
+ 
 
 void enableInterrupts(void)
 {
@@ -40,53 +42,17 @@ void __attribute__((__interrupt__,no_auto_psv)) _CNInterrupt(void)
 {
 /* Insert ISR Code Here*/
     
-    char sensor_vector = (IO_RB3_U_ZCD_GetValue() << 2) 
+    if(!motor_started) {
+        motor_started = true;
+    }
+    
+    volatile char sensor_vector = (IO_RB3_U_ZCD_GetValue() << 2) 
                         + (IO_RC1_V_ZCD_GetValue() << 1) 
                         + (IO_RA11_W_ZCD_GetValue());
-   
-    switch (sensor_vector) { 
-        case 1:
-            __builtin_write_PWMSFR(&IOCON1, 0xC100, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON2, 0xC310, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON3, 0xC300, &PWMKEY);
-            break;
-            
-        case 2:
-            __builtin_write_PWMSFR(&IOCON1, 0xC300, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON2, 0xC310, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON3, 0xC100, &PWMKEY);
-            break;
-            
-        case 3:
-            __builtin_write_PWMSFR(&IOCON1, 0xC310, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON2, 0xC300, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON3, 0xC100, &PWMKEY);
-            break;
-            
-        case 4:
-            __builtin_write_PWMSFR(&IOCON1, 0xC310, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON2, 0xC100, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON3, 0xC300, &PWMKEY);
-            break;
-            
-        case 5:
-            __builtin_write_PWMSFR(&IOCON1, 0xC300, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON2, 0xC100, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON3, 0xC310, &PWMKEY);
-            break;
-            
-        case 6:
-            __builtin_write_PWMSFR(&IOCON1, 0xC100, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON2, 0xC300, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON3, 0xC310, &PWMKEY);
-            break;
-            
-        default:
-            __builtin_write_PWMSFR(&IOCON1, 0xC000, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON2, 0xC000, &PWMKEY);
-            __builtin_write_PWMSFR(&IOCON3, 0xC000, &PWMKEY);
-
-    }
+    
+    //sensor_vector = 6;
+    write_switching_vector(sensor_vector, 1);
+    
 
 /* Clear CN interrupt */
     IFS1bits.CNIF = 0;

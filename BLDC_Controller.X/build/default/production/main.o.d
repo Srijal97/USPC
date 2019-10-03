@@ -10,7 +10,8 @@ Macros.h  \
 motorFun.h  \
 globals.h  \
 Tasks.h  \
+ISRs.h  \
 BizLogic.h  \
-CANProtocol.h  \
- MODBUS.h  \
+ CANProtocol.h  \
+MODBUS.h  \
 encoder.h 

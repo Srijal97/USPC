@@ -10,6 +10,7 @@
 
 #include "Macros.h"
 #include "projMacros.h"
+#include "stdbool.h"
 
 #ifdef	__cplusplus
 extern "C" {
@@ -48,6 +49,11 @@ uCHAR messageBuffer[MAX_TXRX_BUFF_LENGHT]; // 50 bytes
 uCHAR receiveByteLen = 50;
 uINT  modbusTimeoutCounter;
 uCHAR flagSlaveAdd = NO;
+
+bool motor_started = false;
+
+const char next_sensor_vector[6] = {5, 3, 1, 6, 4, 2};
+char startup_sensor_vector = 0;
 
 
 #ifdef	__cplusplus

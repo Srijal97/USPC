@@ -42,7 +42,7 @@
     TERMS.
 */
 
-/**
+/*
   Section: Included Files
 */
 
@@ -60,6 +60,7 @@
 #include "CANProtocol.h"
 #include "MODBUS.h"
 #include "encoder.h"
+#include "ISRs.h"
 
 
 /*
@@ -73,17 +74,19 @@ int main(void)
     SYSTEM_Initialize();
     PWM_ModuleEnable();
     
+    startup_sensor_vector = (IO_RB3_U_ZCD_GetValue() << 2) 
+                          + (IO_RC1_V_ZCD_GetValue() << 1) 
+                          + (IO_RA11_W_ZCD_GetValue());
+    
+    
     TMR1_Start();   // Kernel Timer Start
     
     enableInterrupts();
-    initInterrupts();
     
     //int a = sizeof(uLONG);
 
     while (1)
     {
-        
-      
         
         TMR1_Tasks_16BitOperation();    // 100uS Timer function
         

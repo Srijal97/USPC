@@ -7,11 +7,11 @@
 #include "BizLogic.h"
 #include "MODBUS.h"
 
+
 uCHAR cnt1ms  = 0;
 uCHAR cnt10ms = 0;
 uCHAR cnt25ms = 0;
 uCHAR cnt100ms = 0;
-
 
 //******************************************************************************
 // TimerCallBack 
@@ -117,6 +117,20 @@ void Timer10msTask (void)
 //******************************************************************************
 void Timer25msTask (void)
 {
+    static int startup_step_count = 0;
+        
+    if (startup_step_count < STARTUP_STEP_COUNT_LIMIT || 1) {
+//        volatile char sensor_vector = (IO_RB3_U_ZCD_GetValue() << 2) 
+//                    + (IO_RC1_V_ZCD_GetValue() << 1) 
+//                    + (IO_RA11_W_ZCD_GetValue());
+//        write_switching_vector(sensor_vector, 1);
+        write_switching_vector(startup_sensor_vector, 1);
+
+        startup_sensor_vector = next_sensor_vector[startup_sensor_vector - 1];
+        startup_step_count++;
+    } else if (!motor_started){
+        initInterrupts();
+    }
    //IO_RD5_HB_LED_Toggle();   
     cnt100ms++;
     if(cnt100ms == 4){

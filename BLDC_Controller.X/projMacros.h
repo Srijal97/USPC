@@ -67,6 +67,8 @@ extern "C" {
 #define READ_HOLDING_REGISTERS      (uCHAR)0x03  
 #define PRESET_SINGLE_REGISTER      (uCHAR)0x06
 #define PRESET_MULTIPLE_REGISTERS   (uCHAR)0x10   
+    
+#define STARTUP_STEP_COUNT_LIMIT  100
 
 #ifdef	__cplusplus
 }
