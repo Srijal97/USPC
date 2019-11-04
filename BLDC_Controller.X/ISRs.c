@@ -42,16 +42,16 @@ void __attribute__((__interrupt__,no_auto_psv)) _CNInterrupt(void)
 {
 /* Insert ISR Code Here*/
     
-    if(!motor_started) {
-        motor_started = true;
-    }
-    
-    volatile char sensor_vector = (IO_RB3_U_ZCD_GetValue() << 2) 
-                        + (IO_RC1_V_ZCD_GetValue() << 1) 
-                        + (IO_RA11_W_ZCD_GetValue());
-    
-    //sensor_vector = 6;
-    write_switching_vector(sensor_vector, 1);
+//    if(!motor_started) {
+//        motor_started = true;
+//    }
+//    
+//    volatile char sensor_vector = (IO_RB3_U_ZCD_GetValue() << 2) 
+//                        + (IO_RC1_V_ZCD_GetValue() << 1) 
+//                        + (IO_RA11_W_ZCD_GetValue());
+//    
+//    //sensor_vector = 6;
+//    write_switching_vector(sensor_vector, 1);
     
 
 /* Clear CN interrupt */

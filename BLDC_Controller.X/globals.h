@@ -1,6 +1,6 @@
 /* 
  * File:   globals.h
- * Author: Eshu
+ * Author: Eshu, Srijal
  *
  * Created on May 12, 2019, 12:52 PM
  */

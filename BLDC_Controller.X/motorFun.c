@@ -72,9 +72,9 @@ void write_switching_vector(char sensor_vector, char direction) {
     
     switch (sensor_vector) { 
       case 1:
-          __builtin_write_PWMSFR(&IOCON1, 0xC740, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON2, 0xC500, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON3, 0xC700, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON1, 0xF340, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xF000, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xF300, &PWMKEY);
 
           IO_RD5_BLDC_LED_SetHigh();
           IO_RD6_PMSM_LED_SetHigh();
@@ -82,9 +82,9 @@ void write_switching_vector(char sensor_vector, char direction) {
           break;
 
       case 2:
-          __builtin_write_PWMSFR(&IOCON1, 0xC500, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON2, 0xC700, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON3, 0xC740, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON1, 0xF000, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xF300, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xF340, &PWMKEY);
 
           IO_RD5_BLDC_LED_SetHigh();
           IO_RD6_PMSM_LED_SetLow();
@@ -92,9 +92,9 @@ void write_switching_vector(char sensor_vector, char direction) {
           break;
 
       case 3:
-          __builtin_write_PWMSFR(&IOCON1, 0xC700, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON2, 0xC500, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON3, 0xC740, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON1, 0xF300, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xF000, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xF340, &PWMKEY);
 
           IO_RD5_BLDC_LED_SetHigh();
           IO_RD6_PMSM_LED_SetLow();
@@ -102,9 +102,9 @@ void write_switching_vector(char sensor_vector, char direction) {
           break;
 
       case 4:
-          __builtin_write_PWMSFR(&IOCON1, 0xC700, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON2, 0xC740, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON3, 0xC500, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON1, 0xF300, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xF340, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xF000, &PWMKEY);
 
           IO_RD5_BLDC_LED_SetLow();
           IO_RD6_PMSM_LED_SetHigh();
@@ -112,9 +112,9 @@ void write_switching_vector(char sensor_vector, char direction) {
           break;
 
       case 5:
-          __builtin_write_PWMSFR(&IOCON1, 0xC740, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON2, 0xC700, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON3, 0xC500, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON1, 0xF340, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xF300, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xF000, &PWMKEY);
 
           IO_RD5_BLDC_LED_SetLow();
           IO_RD6_PMSM_LED_SetHigh();
@@ -122,9 +122,9 @@ void write_switching_vector(char sensor_vector, char direction) {
           break;
 
       case 6:
-          __builtin_write_PWMSFR(&IOCON1, 0xC500, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON2, 0xC740, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON3, 0xC700, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON1, 0xF000, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xF340, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xF300, &PWMKEY);
 
           IO_RD5_BLDC_LED_SetLow();
           IO_RD6_PMSM_LED_SetLow();
@@ -132,9 +132,9 @@ void write_switching_vector(char sensor_vector, char direction) {
           break;
 
       default:
-          __builtin_write_PWMSFR(&IOCON1, 0xC400, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON2, 0xC400, &PWMKEY);
-          __builtin_write_PWMSFR(&IOCON3, 0xC400, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON1, 0xF300, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON2, 0xF300, &PWMKEY);
+          __builtin_write_PWMSFR(&IOCON3, 0xF300, &PWMKEY);
 
           IO_RD5_BLDC_LED_SetLow();
           IO_RD6_PMSM_LED_SetLow();
