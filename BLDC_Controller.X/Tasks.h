@@ -21,6 +21,7 @@ extern "C" {
 extern uINT eventRegister;
 
 extern bool motor_started;
+extern bool commutation_required;
 
 extern char startup_sensor_vector;
 extern const char next_sensor_vector[];

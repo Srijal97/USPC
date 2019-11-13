@@ -28,6 +28,141 @@ void TimerCallBack (void)
     // Read ADC is the 100us default Task
     readAllAnalogVariables();
     
+    static uINT16 u_zcd_state = 0;
+    static uINT16 v_zcd_state = 0;
+    static uINT16 w_zcd_state = 0;
+    
+    static uINT time_to_wait = 70; // wait for 70x100us = 7msec from edge detected to commutation 
+    
+/* Gives rising edges on input pin at approx 500us delay with timer callback every 100us
+    u_zcd_state = (0xFFC0 | !IO_RB3_U_ZCD_GetValue()) | (u_zcd_state << 1);  
+    if(u_zcd_state == 0xFFE0) {     
+        commutation_required = true;
+        IO_RD5_BLDC_LED_SetHigh();
+    } else{
+        IO_RD5_BLDC_LED_SetLow();
+    }
+    
+ * Gives falling edges on input pin at approx 500us delay with timer callback every 100us
+    u_zcd_state = (0xFFE0 && IO_RB3_U_ZCD_GetValue()) | (u_zcd_state << 1);  
+    if(u_zcd_state == 0xFFC0) {     
+        commutation_required = true;
+        IO_RD5_BLDC_LED_SetHigh();
+    } else{
+        IO_RD5_BLDC_LED_SetLow();
+    }
+
+ * based on switch debounce logic. refer: https://www.embedded.com/electronics-blogs/break-points/4024981/My-favorite-software-debouncers
+ */  
+    
+    
+    
+    
+    switch(startup_sensor_vector) {
+        case 1:
+             // check for W_ZCD_rising --> check falling edge on pin (input is inverted)
+            
+            w_zcd_state = (0xFFE0 && IO_RA11_W_ZCD_GetValue()) | (w_zcd_state << 1);  
+            if(w_zcd_state == 0xFFC0) {     
+                commutation_required = true;
+                time_to_wait = 70;
+                //IO_RD5_BLDC_LED_SetHigh();
+                //IO_RC9_IM_LED_SetHigh();
+            } else {
+                //IO_RD5_BLDC_LED_SetLow();
+                //IO_RC9_IM_LED_SetLow();
+            }
+            
+            break;
+
+        case 2:
+            // check for V_ZCD_rising  --> falling edge on pin
+            v_zcd_state = (0xFFE0 && IO_RC1_V_ZCD_GetValue()) | (v_zcd_state << 1);  
+            if(v_zcd_state == 0xFFC0) {     
+                commutation_required = true;
+                time_to_wait = 70;
+                //IO_RD5_BLDC_LED_SetHigh();
+                //IO_RD6_PMSM_LED_SetHigh();
+            } else {
+                //IO_RD5_BLDC_LED_SetLow();
+                //IO_RD6_PMSM_LED_SetLow();
+            }
+            
+            break;
+
+        case 3:
+            // check for U_ZCD_falling  --> rising edge on pin
+            u_zcd_state = (0xFFC0 | !IO_RB3_U_ZCD_GetValue()) | (u_zcd_state << 1);  
+            if(u_zcd_state == 0xFFE0) {     
+                commutation_required = true;
+                time_to_wait = 70;
+                //IO_RD5_BLDC_LED_SetHigh();
+                //IO_RD5_BLDC_LED_SetHigh();
+            } else{
+                //IO_RD5_BLDC_LED_SetLow();
+                //IO_RD5_BLDC_LED_SetLow();
+            }
+            
+            break;
+        case 4:
+            // check for U_ZCD_rising --> falling edge on pin
+            u_zcd_state = (0xFFE0 && IO_RB3_U_ZCD_GetValue()) | (u_zcd_state << 1);  
+            if(u_zcd_state == 0xFFC0) {     
+                commutation_required = true;
+                time_to_wait = 70;
+                //IO_RD5_BLDC_LED_SetHigh();
+                //IO_RD5_BLDC_LED_SetHigh();
+            } else{
+                //IO_RD5_BLDC_LED_SetLow();
+                //IO_RD5_BLDC_LED_SetLow();
+            }
+            
+            break;
+
+        case 5:
+            // check for V_ZCD_falling --> rising edge on pin
+            v_zcd_state = (0xFFC0 | !IO_RC1_V_ZCD_GetValue()) | (v_zcd_state << 1);  
+            if(v_zcd_state == 0xFFE0) {     
+                commutation_required = true;
+                time_to_wait = 70;
+                //IO_RD5_BLDC_LED_SetHigh();
+                //IO_RD6_PMSM_LED_SetHigh();
+            } else {
+                //IO_RD5_BLDC_LED_SetLow();
+                //IO_RD6_PMSM_LED_SetLow();
+            }
+            
+            break;
+
+        case 6:
+            // check for W_ZCD_falling --> rising edge on pin
+            w_zcd_state = (0xFFC0 | !IO_RA11_W_ZCD_GetValue()) | (w_zcd_state << 1);  
+            if(w_zcd_state == 0xFFE0) {     
+                commutation_required = true;
+                time_to_wait = 70;
+                //IO_RD5_BLDC_LED_SetHigh();
+                //IO_RC9_IM_LED_SetHigh();
+            } else {
+                //IO_RD5_BLDC_LED_SetLow();
+                //IO_RC9_IM_LED_SetLow();
+            }
+            
+            break;
+    }
+    
+    time_to_wait--;
+    
+    if (commutation_required && motor_started && (time_to_wait < 1)) {
+        startup_sensor_vector = next_sensor_vector[startup_sensor_vector - 1];
+        write_switching_vector(startup_sensor_vector, 1);
+        commutation_required = false;
+        IO_RD5_BLDC_LED_SetHigh();
+    } else {
+        IO_RD5_BLDC_LED_SetLow();
+    }
+    
+    
+    
     if(++cnt1ms > 9)
     {
         cnt1ms = 0;
@@ -96,9 +231,17 @@ void TimerCallBack (void)
 void Timer1msTask (void)
 {
     if(++cnt5ms > 4){
-        write_switching_vector(startup_sensor_vector, 1);
-        startup_sensor_vector = next_sensor_vector[startup_sensor_vector - 1];
-           
+        
+        static int startup_step_count = 0;
+        
+        if (startup_step_count < STARTUP_STEP_COUNT_LIMIT) {
+            startup_sensor_vector = next_sensor_vector[startup_sensor_vector - 1];
+            write_switching_vector(startup_sensor_vector, 1);
+
+            startup_step_count++;
+        } else {
+            motor_started = true;
+        }
         cnt5ms = 0;
     }
 }

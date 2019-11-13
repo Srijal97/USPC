@@ -125,9 +125,9 @@ void PIN_MANAGER_Initialize (void)
     
     // Setting the Pin Change Notification Interrupts
     
-    CNENA = 0x0800;  // enable on RA11/AN9
-    CNENB = 0x0008;  // enable on RB3/AN5
-    CNENC = 0x0002;  // enable on RC1/AN7
+    CNENA = 0x0000;  //0x0800;  // enable on RA11/AN9
+    CNENB = 0x0000;  //0x0008;  // enable on RB3/AN5
+    CNENC = 0x0000;  //0x0002;  // enable on RC1/AN7
 
 
     /****************************************************************************

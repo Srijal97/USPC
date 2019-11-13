@@ -51,6 +51,7 @@ uINT  modbusTimeoutCounter;
 uCHAR flagSlaveAdd = NO;
 
 bool motor_started = false;
+bool commutation_required = false;
 
 const char next_sensor_vector[6] = {5, 3, 1, 6, 4, 2};
 char startup_sensor_vector = 0;

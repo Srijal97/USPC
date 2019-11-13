@@ -49,6 +49,8 @@
 /*
  * Please note that the PWM outputs from the microcontroller have to be active-low,
  * as the isolation optocoupler stage on PCB is inverting.
+ * 
+ * ZCD inputs are also inverted.
  */
 
 
